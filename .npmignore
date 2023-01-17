@@ -1,0 +1,8 @@
+tests/
+src/
+.eslintrc
+.mocharc.json
+.prettierrc
+.tslint.json
+.tsconfig.json
+.gitignore
