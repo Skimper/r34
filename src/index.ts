@@ -4,6 +4,9 @@ import { getImagesR34,
          getImagesPaheal,
          getImagesAllthefallen,
          getRandomImage } from './rule34.js';
+         
+import {
+    getPostR34, } from './posts.js';
 
 export function helloWorld(): string {
     const msg = 'Rule #34 There is porn of it. No exceptions!';
@@ -17,5 +20,7 @@ export default {
     getImagesRule34Us,
     getImagesPaheal,
     getImagesAllthefallen,
-    getRandomImage
+    getRandomImage,
+
+    getPostR34,
 };

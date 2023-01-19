@@ -4,14 +4,6 @@ import cheerio from 'cheerio';
 import { imageList, linksList } from './common/types.js';
 
 /**
- * rule34.xxx               (Works)     1000 images             API
- * booru.allthefallen.moe   (Works)     all images from page    Web Scraping
- * xbooru.com               (Works)     100 images              API
- * rule34.us                (Works)     all images from page    Web Scraping
- * rule34.paheal.net        (Works)     all images from page    Web Scraping
- */
-
-/**
  * @param {string} title Image title
  * @returns {Promise<imageList[]>} Object with image and post link.
  * @description Get random image from rule34.xxx

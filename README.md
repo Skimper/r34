@@ -16,15 +16,14 @@ from ...
 
 ## 🎓 How to use
 
-Install module
+### Install module
 ```
 npm i r34
 ```
-How to use
+
+### Find by name / tags / author
 ```js
 import r34 from "r34";
-
-// Find by name / tags / author
 
 const data = await r34.getImagesR34("title");
 console.log(data[0]);
@@ -42,11 +41,6 @@ console.log(data[0]);
 const data = await r34.getImagesAllthefallen("title");
 console.log(data[0]);
 
-//  Random image
-
-const data = await r34.getRandomImage();
-console.log(data[0]);
-
 /* All of the above return an array
 [
   {
@@ -55,7 +49,6 @@ console.log(data[0]);
     post: 'postLink'
   }
 ]
-
 // If nothing is found or fails to connect to the site
 [
   {
@@ -65,6 +58,18 @@ console.log(data[0]);
   }
 ]
 */
+```
+
+### Random image
+```js
+const data = await r34.getRandomImage();
+console.log(data[0]);
+```
+
+### Post information
+```js
+const data = await r34.getPostR34(1);
+console.log(data);
 ```
 
 ## Development plans
