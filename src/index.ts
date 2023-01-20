@@ -5,8 +5,11 @@ import { getImagesR34,
          getImagesAllthefallen,
          getRandomImage } from './rule34.js';
          
-import {
-    getPostR34, } from './posts.js';
+import { getPostR34,
+         getPostBoru,
+         getPostRule34Us,
+         getPostPaheal,
+         getPostAllthefallen } from './posts.js';
 
 export function helloWorld(): string {
     const msg = 'Rule #34 There is porn of it. No exceptions!';
@@ -23,4 +26,8 @@ export default {
     getRandomImage,
 
     getPostR34,
+    getPostBoru,
+    getPostRule34Us,
+    getPostPaheal,
+    getPostAllthefallen
 };
