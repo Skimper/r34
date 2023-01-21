@@ -19,7 +19,7 @@ describe('Get post from rule34.xxx', () => {
         expect(actual).to.be.a('object');
 
         expect(actual.id).to.be.equal('1');
-        expect(actual.link).to.be.equal(1); // ! change to string
+        expect(actual.link).to.be.equal(1);
         expect(actual.character).to.be.equal('character request');
         expect(actual.artist).to.be.equal('Anonymous');
         expect(actual.posted).to.be.equal('2010-11-12 19:06:29');

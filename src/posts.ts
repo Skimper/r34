@@ -4,7 +4,7 @@ import cheerio from 'cheerio';
 import { postInfo } from './common/types.js';
 
 /**
- * @param {number} title Image id
+ * @param {number} id Image id
  * @returns {Promise<postInfo>} Object with image and post information.
  * @description Get post info from rule34.xxx
  * @example getPostR34(123)
@@ -38,15 +38,23 @@ export async function getPostR34(id: number): Promise<postInfo> {
     const $: cheerio.Root = cheerio.load(body);
 
     if($('#image').length != 0) {
+        let rating: string;
+        if($('#stats ul li').length == 5){
+            rating = $('#stats ul li:nth-child(3)').next().text().replace('Rating: ', '');
+        } else {
+            rating = $('#stats ul li:nth-child(4)').next().text().replace('Rating: ', '');
+        }
+
         postInfo = {
             link: url,
             id: id,
-            character: $('.tag-type-character a').text().substring(1),
-            artist: $('.tag-type-artist a').next().text(),
-            posted: $('#stats ul li:nth-child(1)').next().text().substring(9,28), // ? /(^\d{4}-\d{2}-\d{1,2} \d{2}:\d{2}:\d{2}).*/
+            character: $('.tag-type-character a').text().substring(1).replace(/\?/gd, " "),
+            artist: $('.tag-type-artist a').text().substring(1).replace(/\?/gd, " "),
+            posted: $('#stats ul li:nth-child(1)').next().text().substring(9,28),
             size: $('#stats ul li:nth-child(2)').next().text().replace('Size: ', ''),
-            rating: $('#stats ul li:nth-child(3)').next().text().replace('Rating: ', ''),
+            rating: rating,
             score: $('#stats li span').text(),
+
             tags: $('#image').attr('alt') 
         };
     }
@@ -54,6 +62,12 @@ export async function getPostR34(id: number): Promise<postInfo> {
     return postInfo;
 }
 
+/**
+ * @param {number} id Image id
+ * @returns {Promise<postInfo>} Object with image and post information.
+ * @description Get post info from xbooru.com
+ * @example getPostBoru(123)
+*/
 export async function getPostBoru(id: number): Promise<postInfo> {
     const url: string = 'https://xbooru.com/index.php?page=post&s=view&id=' + id; 
     const settings: object = { method: 'GET' };
@@ -99,6 +113,12 @@ export async function getPostBoru(id: number): Promise<postInfo> {
     return postInfo;
 }
 
+/**
+ * @param {number} id Image id
+ * @returns {Promise<postInfo>} Object with image and post information.
+ * @description Get post info from rule34.us
+ * @example getPostRule34Us(123)
+*/
 export async function getPostRule34Us(id: number): Promise<postInfo> {
     const url: string = 'https://rule34.us/index.php?r=posts/view&id=' + id;
     const settings: object = { method: 'GET' };
@@ -137,7 +157,7 @@ export async function getPostRule34Us(id: number): Promise<postInfo> {
             size: $('.general-tag').last().text().replace(/Size: | |w|h/g, ""),
             rating: 'Explicit',
             score: $('.general-tag span').last().text(),
-            tags: $('.general-tag a').text()
+            tags: $('.content_push img').attr('alt')?.replace(/,/g, "")
         };
     }
 
@@ -179,8 +199,8 @@ export async function getPostPaheal(id: number): Promise<postInfo> {
             character: undefined,
             artist: $('.username').text(),
             posted: $('.image_info time').attr('datetime')?.substring(0, 19).replace('T', ' '), // ? /(^\d{4}-\d{2}-\d{1,2} \d{2}:\d{2}:\d{2}).*/
-            size: $('.image_info tr:nth-child(5) td').text().substring(0, 9),
-            rating: 'Explicit',
+            size: $('.image_info tr:nth-child(5) td').text().replace(/\d+\sx\s\d+\s/gm, ''),
+            rating: undefined,
             score: undefined,
             tags: $('.image_info input').attr('value') 
         };
