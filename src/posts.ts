@@ -164,6 +164,12 @@ export async function getPostRule34Us(id: number): Promise<postInfo> {
     return postInfo;
 }
 
+/**
+ * @param {number} id Image id
+ * @returns {Promise<postInfo>} Object with image and post information.
+ * @description Get post info from rule34.paheal.net
+ * @example getPostPaheal(123)
+*/
 export async function getPostPaheal(id: number): Promise<postInfo> {
     const url: string = 'https://rule34.paheal.net/post/view/' + id;
     const settings: object = { method: 'GET' };
@@ -193,13 +199,14 @@ export async function getPostPaheal(id: number): Promise<postInfo> {
     const $: cheerio.Root = cheerio.load(body);
 
     if($('#main_image').length != 0) {
+        const size: string = $('.image_info tr:nth-child(5) td').text();
         postInfo = {
             link: url,
             id: id,
             character: undefined,
-            artist: $('.username').text(),
+            artist: undefined,
             posted: $('.image_info time').attr('datetime')?.substring(0, 19).replace('T', ' '), // ? /(^\d{4}-\d{2}-\d{1,2} \d{2}:\d{2}:\d{2}).*/
-            size: $('.image_info tr:nth-child(5) td').text().replace(/\d+\sx\s\d+\s/gm, ''),
+            size: size.substring(0, size.indexOf(' ')),
             rating: undefined,
             score: undefined,
             tags: $('.image_info input').attr('value') 
@@ -238,16 +245,19 @@ export async function getPostAllthefallen(id: number): Promise<postInfo> {
     const $: cheerio.Root = cheerio.load(body);
 
     if($('#image').length != 0) {
+        const size: string | undefined = $('#post-info-size').text();
+        const res = size.split('(').pop()?.split(')')[0];
+
         postInfo = {
             link: url,
             id: id,
             character: $('.tag-type-4').attr('data-tag-name'),
             artist: $('.tag-type-1 a').next().text(),
             posted: $('#post-info-date time').attr('datetime')?.substring(0, 19).replace('T', ' '),
-            size: $('#post-info-size').text().slice(-13, -4), // ! Nie będzie działać jeśli wymiary będą większe lub mniejsze niż {4}x{4}
+            size: res,
             rating: $('#post-info-rating').text().replace('Rating: ', ''),
             score: $('.post-score').text(),
-            tags: $('.search-tag').text() // ! Trzeba to rozdzielić spacją
+            tags: $('.tag-type-0').attr('data-tag-name') // ! Trzeba to rozdzielić spacją
         };
     }
 
