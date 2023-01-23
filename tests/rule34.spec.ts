@@ -3,7 +3,9 @@ import { assert, expect } from 'chai';
 
 import { getImagesR34, getImagesBoru, 
     getImagesRule34Us, getImagesPaheal, 
-    getImagesAllthefallen, getRandomImage } from '../src/rule34.js';
+    getImagesAllthefallen } from '../src/rule34.js';
+
+import { getRandomImage } from '../src/random.js';
 
 describe('Get image from rule34.xxx', () => {
     it('should be a function', () => {

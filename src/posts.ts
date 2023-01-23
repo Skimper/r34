@@ -39,6 +39,7 @@ export async function getPostR34(id: number): Promise<postInfo> {
 
     if($('#image').length != 0) {
         let rating: string;
+
         if($('#stats ul li').length == 5){
             rating = $('#stats ul li:nth-child(3)').next().text().replace('Rating: ', '');
         } else {
@@ -97,6 +98,14 @@ export async function getPostBoru(id: number): Promise<postInfo> {
     const $: cheerio.Root = cheerio.load(body);
 
     if($('#image').length != 0) {
+        let rating: string;
+        console.log($('#stats ul li').length);
+        if($('#stats ul li').length == 5){
+            rating = $('#stats ul li:nth-child(3)').next().text().replace('Rating: ', '');
+        } else {
+            rating = $('#stats ul li:nth-child(4)').next().text().replace('Rating: ', '');
+        }
+
         postInfo = {
             link: url,
             id: id,
@@ -104,7 +113,7 @@ export async function getPostBoru(id: number): Promise<postInfo> {
             artist: $('.tag-type-artist a').text(),
             posted: $('#stats ul li:nth-child(1)').next().text().substring(8,27), // ? /(^\d{4}-\d{2}-\d{1,2} \d{2}:\d{2}:\d{2}).*/
             size: $('#stats ul li:nth-child(2)').next().text().replace('Size: ', ''),
-            rating: $('#stats ul li:nth-child(3)').next().text().replace('Rating: ', ''),
+            rating: rating,
             score: $('#stats li span').text(),
             tags: $('#image').attr('alt') 
         };
@@ -149,7 +158,7 @@ export async function getPostRule34Us(id: number): Promise<postInfo> {
 
     if($('.content_push').length != 0) {
         postInfo = {
-            link: id.toString(),
+            link: url,
             id: id,
             character: $('.character-tag a').first().text(),//substring(1)
             artist: $('.artist-tag a').text(),
@@ -216,6 +225,12 @@ export async function getPostPaheal(id: number): Promise<postInfo> {
     return postInfo;
 }
 
+/**
+ * @param {number} id Image id
+ * @returns {Promise<postInfo>} Object with image and post information.
+ * @description Get post info from booru.allthefallen.moe
+ * @example getPostAllthefallen(123)
+*/
 export async function getPostAllthefallen(id: number): Promise<postInfo> {
     const url: string = 'https://booru.allthefallen.moe/posts/' + id;
     const settings: object = { method: 'GET' };
@@ -257,7 +272,7 @@ export async function getPostAllthefallen(id: number): Promise<postInfo> {
             size: res,
             rating: $('#post-info-rating').text().replace('Rating: ', ''),
             score: $('.post-score').text(),
-            tags: $('.tag-type-0').attr('data-tag-name') // ! Trzeba to rozdzielić spacją
+            tags: $('.tag-type-0').attr('data-tag-name')
         };
     }
 
