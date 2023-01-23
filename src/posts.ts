@@ -99,7 +99,7 @@ export async function getPostBoru(id: number): Promise<postInfo> {
 
     if($('#image').length != 0) {
         let rating: string;
-        console.log($('#stats ul li').length);
+
         if($('#stats ul li').length == 5){
             rating = $('#stats ul li:nth-child(3)').next().text().replace('Rating: ', '');
         } else {
