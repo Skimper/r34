@@ -44,9 +44,9 @@ console.log(data[0]);
 /* All of the above return an array
 [
   {
-    image: 'imageLink'
-    title: 'title/character',
-    post: 'postLink'
+    image: 'link to the image'
+    title: 'title or character',
+    post: 'post link'
   }
 ]
 // If nothing is found or fails to connect to the site
@@ -64,19 +64,57 @@ console.log(data[0]);
 ```js
 const data = await r34.getRandomImage();
 console.log(data[0]);
+
+/* Returns an array
+[
+  {
+    image: 'link to the image'
+    title: 'title or character',
+    post: 'post link'
+  }
+]
+*/
 ```
 
 ### Post information
 ```js
 const data = await r34.getPostR34(1);
 console.log(data);
+
+const data = await r34.getPostBoru(1);
+console.log(data);
+
+const data = await r34.getPostRule34Us(1);
+console.log(data);
+
+const data = await r34.getPostPaheal(1);
+console.log(data);
+
+const data = await r34.getPostAllthefallen(1);
+console.log(data);
+
+/* All of the above return an object
+{
+  {
+    link: 'link to the image',
+    id: image id,
+    character: 'character name (getPostPaheal() returns undefined)',
+    artist: 'artist name (getPostPaheal() returns undefined)',
+    posted: 'posted date (getPostAllthefallen() returns how long ago the image was uploaded)',
+    size: 'image resolution',
+    rating: 'image rating' (getPostPaheal() returns undefined),
+    score: 'image score' (getPostPaheal() returns undefined),
+    tags: 'tags'
+  }
+}
+*/
 ```
 
 ## Development plans
 * If I find out about any popular site from beyond the list I will add it
 
 ## To do
-- [ ] Posts information
+- [x] Posts information
 - [ ] Author's information
 - [ ] Images ranking
 - [ ] Image comments
