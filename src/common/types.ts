@@ -1,4 +1,4 @@
-/**
+/*
  * @typedef {Object} imageList
  * @property {string} image link to image source
  * @property {string} title title of image
@@ -10,7 +10,7 @@ export interface imageList {
 	title: string | undefined;
 	post: string | undefined;
 }
-/**
+/*
  * @typedef {Object} linksList
  * @property {string} link link to image source
  * @property {string} post link to post
@@ -20,8 +20,8 @@ export interface linksList {
 	link: string | undefined;
 	post: string | undefined;
 }
-/**
- * @typedef {Object} post
+/*
+ * @typedef {Object} postInfo
  * @property {string} link link to image source
  * @property {number} id id of post
  * @property {string} character character in image
@@ -43,4 +43,16 @@ export interface postInfo {
 	rating: string | undefined;
 	score: string | undefined;
 	tags: string | undefined;
+}
+/*
+ * @typedef {Object} artistInfo
+*/
+export interface artistinfo {
+  name: string | undefined;
+  id: number | undefined;
+  characters: string[] | undefined;
+  copyright: string[] | undefined;
+  posts: number | undefined;
+  url: string | undefined;
+  lastPost: string | undefined;
 }
