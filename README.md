@@ -115,7 +115,7 @@ console.log(data);
 
 ## To do
 - [x] Posts information
-- [ ] Author's information
+- [ ] Multiple images at once (in 1.2.0)
 - [ ] Images ranking
 - [ ] Image comments
 
