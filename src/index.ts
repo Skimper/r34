@@ -12,6 +12,8 @@ import { getPostR34,
 
 import { getRandomImage } from './random.js';
 
+import { getCommentsR34 } from './comments.js';
+
 export function helloWorld(): string {
     const msg = 'Rule #34 There is porn of it. No exceptions!';
     return msg;
@@ -31,5 +33,7 @@ export default {
     getPostPaheal,
     getPostAllthefallen,
 
-    getRandomImage
+    getRandomImage,
+
+    getCommentsR34
 };

@@ -112,12 +112,16 @@ console.log(data);
 
 ## Development plans
 * If I find out about any popular site from beyond the list I will add it
+* If you have any ideas for new features, write to me
+* The project will be developed according to the following list
 
 ## To do
 - [x] Posts information
-- [ ] Multiple images at once (in 1.2.0)
+- [ ] Image comments (in 1.2.0)
+- [ ] Multiple images at once (in 1.3.0)
 - [ ] Images ranking
-- [ ] Image comments
+- [ ] Artist information
+- [ ] Image and everything else in one function (in 2.0.0)
 
 ## Important information
 It's a good idea to familiarize yourself with the rules for using images from each site. You use at your own risk.

@@ -46,8 +46,16 @@ export interface postInfo {
 }
 /*
  * @typedef {Object} artistInfo
+ * @property {string} name name of artist
+ * @property {number} id id of artist
+ * @property {string[]} characters characters artist has drawn
+ * @property {string[]} copyright copyright information
+ * @property {number} posts number of posts artist has made
+ * @property {string} url link to artist prifile
+ * @property {string} lastPost link to last post artist made
+ * @description Object with all artist information.
 */
-export interface artistinfo {
+export interface artistInfo {
   name: string | undefined;
   id: number | undefined;
   characters: string[] | undefined;
@@ -55,4 +63,17 @@ export interface artistinfo {
   posts: number | undefined;
   url: string | undefined;
   lastPost: string | undefined;
+}
+/*
+ * @typedef {Object} comment
+ * @property {string} comment comment
+ * @property {string} author author of comment
+ * @property {string} date date comment was posted
+ * @description Object with comment information.
+*/
+export interface commentList {
+	author: string | undefined;
+	comment: string | undefined;
+	date: string | undefined;
+	score: number | undefined;
 }

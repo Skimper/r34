@@ -1,7 +1,7 @@
 import fetch, { Response } from 'node-fetch';
 import cheerio from 'cheerio';
 
-import { artistinfo, artistInfo } from './common/types.js';
+import { artistInfo } from './common/types.js';
 
 /*
  * @param {name} Artist name
@@ -9,24 +9,24 @@ import { artistinfo, artistInfo } from './common/types.js';
  * @description ...
  * @example getArtistR34('name or id')
 */
-export async function getArtistR34(artist: String | number): Promise<artistinfo>{
-    if (artist typeof String) {
-      const url = 'https://rule34.xxx/index.php?page=artist&s=list&search=' + artist;
+export async function getArtistR34(artist: string | number): Promise<artistInfo>{
+    let url: string;
+    if (typeof artist === "string") {
+      url = 'https://rule34.xxx/index.php?page=artist&s=list&search=' + artist;
     } else {
-      const url: string = 'https://rule34.xxx/index.php?page=artist&s=view&id' + artist;
+      url = 'https://rule34.xxx/index.php?page=artist&s=view&id' + artist;
     }
     const settings: object = { method: 'GET' }; 
 
-    let artistInfo: artistinfo = {
-      name = undefined,
-      id = undefined,
-      characters = undefined,
+    let artistInfo: artistInfo = {
+      name: undefined,
+      id: undefined,
+      characters: undefined,
       copyright: undefined,
-      posts: undefined,
       posts: undefined,
       url: undefined,
       lastPost: undefined
-    } 
+    };
 
     let page: Response;
     try {
@@ -40,6 +40,5 @@ export async function getArtistR34(artist: String | number): Promise<artistinfo>
     const body: string = await page.text();
     const $: cheerio.Root = cheerio.load(body);
 
-    
-  }
+    return artistInfo;
 }
