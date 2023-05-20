@@ -181,7 +181,7 @@ describe('Get post from booru.allthefallen.moe', () => {
         expect(actual.id).to.be.equal(445262);
         expect(actual.link).to.be.equal('https://booru.allthefallen.moe/posts/445262');
         expect(actual.character).to.be.equal('marcy_wu');
-        expect(actual.artist).to.be.equal('fluuzoid66');
+        expect(actual.artist).to.be.equal('fluuzoid94');
         expect(actual.posted).to.be.equal('2023-01-22 17:24-05');
         expect(actual.size).to.be.equal('1390x1195');
         expect(actual.rating).to.be.equal('Explicit');

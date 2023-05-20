@@ -31,7 +31,7 @@ export async function getArtistR34(artist: string | number): Promise<artistInfo>
     let page: Response;
     try {
       page = await fetch(url, settings).catch((error: Error) => {
-        throw new Error(error.message)
+        throw new Error(error.message);
       });
     } catch (error) {
         return artistInfo; 

@@ -30,14 +30,14 @@ describe('Get image from rule34.xxx', () => {
     });
 
     it('promise<imageList[]> should contain information about the image if is only one page', async () => {
-        const actual = await getImagesR34('andrias leviathan');
+        const actual = await getImagesR34('vee');
         expect(actual).to.be.a('array');
         expect(actual[0]).to.have.property('image');
         expect(actual[0]).to.have.property('title');
         expect(actual[0]).to.have.property('post');
 
         expect(actual[0].image).to.have.string('https://api-cdn.rule34.xxx/');
-        expect(actual[0].title).to.have.string('andrias_leviathan');
+        expect(actual[0].title).to.have.string('vee');
         expect(actual[0].post).to.have.string('rule34.xxx/');
     });
 

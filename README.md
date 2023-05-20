@@ -117,8 +117,9 @@ console.log(data);
 
 ## To do
 - [x] Posts information
-- [ ] Image comments (in 1.2.0)
-- [ ] Multiple images at once (in 1.3.0)
+- [x] Multiple images at once
+- [ ] Latest image (in 1.4.0)
+- [ ] Image comments (in 1.4.0)
 - [ ] Images ranking
 - [ ] Artist information
 - [ ] Image and everything else in one function (in 2.0.0)
